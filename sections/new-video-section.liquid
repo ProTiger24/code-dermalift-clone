@@ -1,0 +1,109 @@
+{{ 'new-video-section.css' | asset_url | stylesheet_tag }}
+
+<section class="new-video-section">
+  <div class="new-video-container">
+    {% if section.settings.heading != blank or section.settings.description != blank %}
+      <div class="new-video-header">
+        {% if section.settings.heading != blank %}
+          <h2 class="new-video-title">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <p class="new-video-subtitle">{{ section.settings.description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="new-video-grid">
+        {% for block in section.blocks %}
+          <div class="new-video-card" {{ block.shopify_attributes }}>
+            <div class="new-video-wrapper" onclick="toggleNewVideo(this)">
+              {% if block.settings.video_filename != blank %}
+                <video muted playsinline class="new-video">
+                  <source src="{{ block.settings.video_filename | asset_url }}" type="video/mp4">
+                </video>
+                <div class="new-video-play-icon">▶</div>
+              {% else %}
+                <div class="new-video-placeholder">
+                  <span>No video filename set</span>
+                </div>
+              {% endif %}
+            </div>
+            {% if block.settings.caption != blank %}
+              <p class="new-video-caption">{{ block.settings.caption }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  function toggleNewVideo(wrapper) {
+    var video = wrapper.querySelector('video');
+    if (!video) return;
+    var icon = wrapper.querySelector('.new-video-play-icon');
+    if (video.paused) {
+      video.play().catch(function (e) {
+        console.log('Play failed:', e);
+      });
+      icon.textContent = '❚❚';
+    } else {
+      video.pause();
+      icon.textContent = '▶';
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Video Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See DERMALIFT™ In Real Life"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Watch how DERMALIFT™ works to lift, tone, and sculpt facial muscles in real time."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_item",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "text",
+          "id": "video_filename",
+          "label": "Video filename (in assets folder)",
+          "info": "Upload the .mp4 file to your theme's assets folder via code editor, then type its exact filename here (e.g. videodim4.mp4)"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "default": "Describe what this video shows."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Video Showcase",
+      "category": "Custom",
+      "blocks": [
+        { "type": "video_item", "settings": { "video_filename": "videodim1.mp4" } },
+        { "type": "video_item", "settings": { "video_filename": "videodim2.mp4" } },
+        { "type": "video_item", "settings": { "video_filename": "videodim3.mp4" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

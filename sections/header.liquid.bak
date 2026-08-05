@@ -1,0 +1,113 @@
+<style>
+.site-header {
+  background: #fff;
+  padding: 12px 20px;
+  border-bottom: 1px solid #eee;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  z-index: 100;
+}
+.header-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-logo a {
+  display: inline-block;
+  line-height: 0;
+}
+.header-logo img {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+.header-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+.header-nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+.header-nav ul li a:hover {
+  color: #000;
+}
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header-icons a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #333;
+  transition: color 0.2s;
+}
+.header-icons a:hover {
+  color: #000;
+}
+.cart-count {
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: 40px;
+  margin-left: 2px;
+}
+@media (max-width: 768px) {
+  .header-nav {
+    display: none;
+  }
+  .header-wrapper {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .header-logo img {
+    height: 30px;
+  }
+}
+</style>
+
+<header class="site-header">
+  <div class="header-wrapper">
+    <div class="header-logo">
+      <a href="/">
+        <img 
+          src="//www.dermalift.top/cdn/shop/files/DermaLift-logo.png?v=1768711745" 
+          alt="DERMALIFT™" 
+          height="38" 
+          width="auto"
+          loading="lazy"
+        >
+      </a>
+    </div>
+    <nav class="header-nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/collections/all">Shop</a></li>
+        <li><a href="/pages/about">About</a></li>
+        <li><a href="/pages/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-icons">
+      <a href="/search" aria-label="Search">🔍</a>
+      <a href="/account" aria-label="Account">👤</a>
+      <a href="/cart" aria-label="Cart">🛒 <span class="cart-count">{{ cart.item_count }}</span></a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

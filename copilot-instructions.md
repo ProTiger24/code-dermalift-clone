@@ -1,0 +1,1 @@
+/home/abdul-alim/dermalift-clone/AGENTS.md

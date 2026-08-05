@@ -1,0 +1,55 @@
+{{ 'before-after.css' | asset_url | stylesheet_tag }}
+
+<section class="ba-section">
+  <div class="ba-container site-container">
+    <div class="ba-image">
+      <img src="{{ 'before.webp' | asset_url }}" alt="Before & After Results" loading="lazy">
+    </div>
+    <div class="ba-content">
+      <h2 class="ba-title">{{ section.settings.title | default: "Before & After Results" }}</h2>
+      <p class="ba-subtitle">{{ section.settings.subtitle | default: "Real Results Backed by Consistent Use" }}</p>
+      <p class="ba-description">
+        {{ section.settings.description | default: "Thousands of users have experienced visible improvements in facial firmness, contour, and skin texture with regular use of DERMALIFT™. While individual results vary, many notice reduced puffiness, smoother skin, and a more sculpted appearance within a few weeks of daily use. Continued use supports long-term facial tone and skin health." }}
+      </p>
+      <a href="https://www.dermalift.top/products/v-face-lifting-skin-tightening-skin-care-wrinkle-remover-face-sculpting-tools-ems-microcurrent-3d-roller-massager" class="ba-button">{{ section.settings.button_text | default: "Grab Yours!" }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Before & After",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Before & After Results"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Real Results Backed by Consistent Use"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Thousands of users have experienced visible improvements in facial firmness, contour, and skin texture with regular use of DERMALIFT™. While individual results vary, many notice reduced puffiness, smoother skin, and a more sculpted appearance within a few weeks of daily use. Continued use supports long-term facial tone and skin health."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Grab Yours!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before & After",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

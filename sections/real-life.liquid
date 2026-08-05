@@ -1,0 +1,84 @@
+{{ 'real-life.css' | asset_url | stylesheet_tag }}
+
+<section class="real-life-section">
+  <div class="real-life-container">
+    <div class="real-life-header">
+      <h2 class="real-life-title">See DERMALIFT™ In Real Life</h2>
+      <p class="real-life-subtitle">Watch how DERMALIFT™ works to lift, tone, and sculpt facial muscles in realtime.</p>
+    </div>
+
+    <div class="real-life-grid">
+      <!-- ভিডিও ১ -->
+      <div class="real-life-card">
+        <div class="real-life-video-wrapper" onclick="toggleVideo(this)">
+          <video
+            src="{{ 'videodim4.mp4' | asset_url }}"
+            muted
+            playsinline
+            loading="lazy"
+            class="real-life-video"
+          ></video>
+          <div class="real-life-play-icon">▶</div>
+        </div>
+        <p class="real-life-caption">EMS microcurrents activate facial muscles to improve tone and firmness.</p>
+      </div>
+
+      <!-- ভিডিও ২ -->
+      <div class="real-life-card">
+        <div class="real-life-video-wrapper" onclick="toggleVideo(this)">
+          <video
+            src="{{ 'videodim6.mp4' | asset_url }}"
+            muted
+            playsinline
+            loading="lazy"
+            class="real-life-video"
+          ></video>
+          <div class="real-life-play-icon">▶</div>
+        </div>
+        <p class="real-life-caption">3D V-shaped rollers lift and sculpt key areas like jawline and cheeks.</p>
+      </div>
+
+      <!-- ভিডিও ৩ -->
+      <div class="real-life-card">
+        <div class="real-life-video-wrapper" onclick="toggleVideo(this)">
+          <video
+            src="{{ 'videodim5.mp4' | asset_url }}"
+            muted
+            playsinline
+            loading="lazy"
+            class="real-life-video"
+          ></video>
+          <div class="real-life-play-icon">▶</div>
+        </div>
+        <p class="real-life-caption">Dual-action technology boosts circulation and supports lymphatic drainage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function toggleVideo(wrapper) {
+    const video = wrapper.querySelector('video');
+    const icon = wrapper.querySelector('.real-life-play-icon');
+    if (video.paused) {
+      video.play();
+      icon.textContent = '❚❚'; // পজ আইকন
+    } else {
+      video.pause();
+      icon.textContent = '▶'; // প্লে আইকন
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Real Life",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Real Life",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

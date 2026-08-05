@@ -1,0 +1,101 @@
+{{ 'testimonials-marquee.css' | asset_url | stylesheet_tag }}
+
+<section class="tm-section">
+  <div class="tm-container page-width">
+    <h2 class="tm-heading">Trusted by Thousands Worldwide</h2>
+    <p class="tm-subheading">Real experiences from people who added Dermalift™ to their routine.</p>
+
+    <div class="tm-marquee-wrapper">
+      <div class="tm-marquee-track" id="tmMarqueeTrack">
+        <!-- Card 1 -->
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-review">"Easy to use and feels premium. The intensity levels make it simple to customize. After consistent use, I've noticed firm-er-looking skin and better structure around my chin area."</p>
+          <p class="tm-author">— Carlos D.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-review">"Portable and perfect for travel. I keep it in my bag and use it a few times a week when I'm busy. Even short sessions help my face look more toned and less tired."</p>
+          <p class="tm-author">— Maya L.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-review">"My skin looks firmer combination of EMS exactly what I need and I actually enjoy."</p>
+          <p class="tm-author">— Rebecca H.</p>
+        </div>
+
+        <!-- Card 4 (duplicate for seamless loop) -->
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-review">"Easy to use and feels premium. The intensity levels make it simple to customize. After consistent use, I've noticed firm-er-looking skin and better structure around my chin area."</p>
+          <p class="tm-author">— Carlos D.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tm-cta">
+      <a href="{{ section.settings.button_link | default: '#' }}" class="tm-button">{{ section.settings.button_text | default: "Join Happy Customers" }}</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var track = document.getElementById('tmMarqueeTrack');
+  if (!track) return;
+  var cards = track.querySelectorAll('.tm-card');
+  var total = cards.length;
+  if (total < 4) return;
+
+  var current = 0;
+  var cardWidth = cards[0].offsetWidth + 24;
+  var visibleCount = 3;
+
+  function moveMarquee() {
+    current++;
+    if (current > total - visibleCount) {
+      current = 0;
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(0)';
+      setTimeout(function() {
+        track.style.transition = 'transform 0.5s ease';
+      }, 10);
+    } else {
+      track.style.transition = 'transform 0.5s ease';
+      track.style.transform = 'translateX(-' + (current * cardWidth) + 'px)';
+    }
+  }
+
+  setInterval(moveMarquee, 3000);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials Marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Join Happy Customers"
+    },
+    {
+      "type": "text",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "#"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Marquee",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

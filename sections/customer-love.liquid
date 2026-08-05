@@ -1,0 +1,67 @@
+{{ 'customer-love.css' | asset_url | stylesheet_tag }}
+
+<section class="customer-love-section">
+  <div class="customer-love-container site-container">
+    <div class="customer-love-header">
+      <h2 class="customer-love-title">Why Customers Love DERMALIFT™</h2>
+      <p class="customer-love-subtitle">Designed for precision. Built for clinical-grade daily facial sculpting.</p>
+    </div>
+
+    <div class="customer-love-grid">
+      <!-- Card 1 -->
+      <div class="love-card">
+        <div class="love-icon">⚡</div>
+        <h3 class="love-card-title">EMS Microcurrent Tech</h3>
+        <p class="love-card-desc">Low-level electrical currents mirror your body's natural impulses to tone and lift facial muscles.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="love-card">
+        <div class="love-icon">🌀</div>
+        <h3 class="love-card-title">3D V-Sculpt Rollers</h3>
+        <p class="love-card-desc">Precision-engineered 360° rollers mimic professional kneading to define your jawline and cheekbones.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="love-card">
+        <div class="love-icon">💧</div>
+        <h3 class="love-card-title">Lymphatic Drainage</h3>
+        <p class="love-card-desc">Reduces morning puffiness and toxins by encouraging fluid movement and improved circulation.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="love-card">
+        <div class="love-icon">🖐️</div>
+        <h3 class="love-card-title">Lightweight &amp; Ergonomic</h3>
+        <p class="love-card-desc">Sleek, cordless design fits perfectly in your hand for a comfortable 8-minute daily routine.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="love-card">
+        <div class="love-icon">🏠</div>
+        <h3 class="love-card-title">Spa Results at Home</h3>
+        <p class="love-card-desc">Professional-grade facial sculpting without the $300 clinic price tag or messy appointments.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="love-card">
+        <div class="love-icon">🛡️</div>
+        <h3 class="love-card-title">Non-Invasive Safety</h3>
+        <p class="love-card-desc">A needle-free, pain-free alternative to fillers that works with your biology, not against it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer Love",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Customer Love",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

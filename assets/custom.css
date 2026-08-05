@@ -1,0 +1,62 @@
+/* ===== Custom Styles ===== */
+
+/* সব সেকশনের জন্য page-width নিশ্চিত করুন */
+.section-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== Utility Classes ===== */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: #0066ff;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.25);
+}
+
+.btn-primary:hover {
+  background: #000000;
+  transform: scale(1.03);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}

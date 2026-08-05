@@ -1,0 +1,155 @@
+{{ 'customer-carousel.css' | asset_url | stylesheet_tag }}
+
+<section class="cs-section" data-section-id="{{ section.id }}">
+  <div class="cs-header">
+    <h2 class="cs-title">Customer Satisfaction</h2>
+    <p class="cs-subtitle">What our customers say about our products</p>
+  </div>
+
+  <div class="cs-container">
+    <!-- বাম পাশ: fixed stats (Hardcoded) -->
+    <div class="cs-stats">
+      <div class="cs-stat-item">
+        <div class="cs-stat-circle">93%</div>
+        <div class="cs-stat-text">
+          <strong>93% Said skin felt firmer and bouncier within weeks</strong>
+          <p>Microcurrent stimulation helped improve the "tightness" and overall feel of the skin.</p>
+        </div>
+      </div>
+      <div class="cs-stat-item">
+        <div class="cs-stat-circle">96%</div>
+        <div class="cs-stat-text">
+          <strong>96% Noticed a more lifted, sculpted look with consistent use</strong>
+          <p>Jawline + cheek area looked more defined after adding DERMALIFT™ to their routine.</p>
+        </div>
+      </div>
+      <div class="cs-stat-item">
+        <div class="cs-stat-circle">90%</div>
+        <div class="cs-stat-text">
+          <strong>90% Reported reduced puffiness and a more refreshed face</strong>
+          <p>Many users saw a de-puffing effect—especially in the morning.</p>
+        </div>
+      </div>
+      <div class="cs-stat-item">
+        <div class="cs-stat-circle">95%</div>
+        <div class="cs-stat-text">
+          <strong>95% Would recommend DERMALIFT™ to a friend</strong>
+          <p>Easy to use, relaxing, and felt like a "clinic-style" step at home.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ডান পাশ: ক্যারোসেল (শুধু ইমেজ) -->
+    <div class="cs-carousel">
+      <div class="cs-carousel-track" id="cs-carousel-track">
+        {% for block in section.blocks %}
+          <div class="cs-carousel-slide" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.image.alt | default: 'Customer result' }}" loading="lazy">
+            {% else %}
+              <div class="cs-carousel-placeholder">Add an image</div>
+            {% endif %}
+          </div>
+        {% else %}
+          <div class="cs-carousel-placeholder" style="height:100%;display:flex;align-items:center;justify-content:center;background:#f0ece6;font-size:1rem;color:#999;">
+            No slides yet — add a block below
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if section.blocks.size > 1 %}
+        <button class="cs-carousel-btn cs-carousel-prev" onclick="csMove(-1)">‹</button>
+        <button class="cs-carousel-btn cs-carousel-next" onclick="csMove(1)">›</button>
+        <div class="cs-carousel-dots" id="cs-carousel-dots">
+          {% for block in section.blocks %}
+            <span class="cs-dot{% if forloop.first %} active{% endif %}" onclick="csGoTo({{ forloop.index0 }})"></span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var track = document.getElementById('cs-carousel-track');
+  if (!track) return;
+  var slides = track.querySelectorAll('.cs-carousel-slide');
+  var total = slides.length;
+  if (total === 0) return;
+  var dots = document.querySelectorAll('.cs-dot');
+  var current = 0, interval = null, speed = {{ section.settings.autoplay_speed | default: 2500 }};
+
+  window.csGoTo = function(i) {
+    if (i < 0) i = total - 1;
+    if (i >= total) i = 0;
+    current = i;
+    track.style.transform = 'translateX(-' + (i * 100 / total) + '%)';
+    dots.forEach(function(d, idx) { d.classList.toggle('active', idx === i); });
+  };
+
+  window.csMove = function(dir) {
+    stopAuto();
+    csGoTo(current + dir);
+    startAuto();
+  };
+
+  function startAuto() {
+    if (total < 2) return;
+    if (interval) clearInterval(interval);
+    interval = setInterval(function() { csGoTo(current + 1); }, speed);
+  }
+
+  function stopAuto() {
+    if (interval) { clearInterval(interval); interval = null; }
+  }
+
+  var wrapper = track.closest('.cs-carousel');
+  wrapper.addEventListener('mouseenter', stopAuto);
+  wrapper.addEventListener('mouseleave', startAuto);
+  csGoTo(0);
+  startAuto();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Customer Satisfaction",
+  "settings": [
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed (ms)",
+      "min": 1000,
+      "max": 5000,
+      "step": 500,
+      "default": 2500,
+      "unit": "ms"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "carousel_item",
+      "name": "Carousel item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Customer Satisfaction",
+      "category": "Custom",
+      "blocks": [
+        { "type": "carousel_item" },
+        { "type": "carousel_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

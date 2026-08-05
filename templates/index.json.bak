@@ -1,0 +1,74 @@
+{
+  "sections": {
+    "hero-custom": {
+      "type": "hero-custom",
+      "settings": {
+        "title": "Dermalift\u2122",
+        "subtitle": "Advanced EMS Facial Sculpting Technology \u2014 At Home",
+        "headline": "Lift Your Face. Restore Youthful Definition.",
+        "description": "Dermalift\u2122 is a refined approach to facial rejuvenation, inspired by professional aesthetic treatments. Gentle technology works beneath the surface to refresh, sculpt, and restore.",
+        "button_label": "Shop Dermalift\u2122",
+        "button_url": "/collections/all"
+      }
+    },
+    "features": {
+      "type": "features"
+    },
+    "brand-marquee": {
+      "type": "brand-marquee"
+    },
+    "aging-info": {
+      "type": "aging-info"
+    },
+    "clinical-lift": {
+      "type": "clinical-lift"
+    },
+    "revolution-section": {
+      "type": "revolution-section"
+    },
+    "customer-love": {
+      "type": "customer-love"
+    },
+    "how-it-works": {
+      "type": "how-it-works"
+    },
+    "new-video-section": {
+      "type": "new-video-section"
+    },
+    "customer-carousel": {
+      "type": "customer-carousel"
+    },
+    "before-after": {
+      "type": "before-after"
+    },
+    "cmp-table": {
+      "type": "cmp-table"
+    },
+    "testimonials-marquee": {
+      "type": "testimonials-marquee"
+    },
+    "faq-section": {
+      "type": "faq-section"
+    },
+    "footer-custom": {
+      "type": "footer-custom"
+    }
+  },
+  "order": [
+    "hero-custom",
+    "brand-marquee",
+    "aging-info",
+    "features",
+    "clinical-lift",
+    "revolution-section",
+    "customer-love",
+    "how-it-works",
+    "new-video-section",
+    "customer-carousel",
+    "before-after",
+    "cmp-table",
+    "testimonials-marquee",
+    "faq-section",
+    "footer-custom"
+  ]
+}

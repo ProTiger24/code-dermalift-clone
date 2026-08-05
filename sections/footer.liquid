@@ -1,0 +1,135 @@
+{{ 'footer.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<footer class="footer">
+  <div class="footer__container">
+    <!-- ===== গ্রিড: ব্র্যান্ড + তথ্য + নিউজলেটার ===== -->
+    <div class="footer__grid">
+      <!-- ব্র্যান্ড বর্ণনা -->
+      <div class="footer__col footer__brand">
+        <h3 class="footer__brand-title">Dermalift</h3>
+        <p class="footer__brand-text">
+          DERMALIFT™ delivers professional-grade facial sculpting technology in a simple, at-home device. Using
+          clinically inspired EMS microcurrent stimulation and precision V-shaped rollers, our devices help lift,
+          tighten, and redefine facial contours without needles, surgery, or expensive clinic visits. We believe visible
+          results come from consistency, intelligent design, and technology that works with your body's natural
+          processes.
+        </p>
+      </div>
+
+      <!-- Informations -->
+      <div class="footer__col">
+        <h4 class="footer__heading">Informations</h4>
+        <ul class="footer__links">
+          <li><a href="{{ section.settings.privacy_link | default: '#' }}">Privacy Policy</a></li>
+          <li><a href="{{ section.settings.refund_link | default: '#' }}">Refund Policy</a></li>
+          <li><a href="{{ section.settings.terms_link | default: '#' }}">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Navigations -->
+      <div class="footer__col">
+        <h4 class="footer__heading">Navigations</h4>
+        <ul class="footer__links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/collections/all">Dermalift™ Pro Facial Sculptor</a></li>
+          <li><a href="/pages/about">About</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Subscribe -->
+      <div class="footer__col footer__subscribe">
+        <h4 class="footer__heading">Subscribe</h4>
+        <p class="footer__subscribe-text">
+          Be the first to know—subscribe to our newsletter to receive insider updates, trends, and exclusive deals.
+        </p>
+        <form
+          class="footer__subscribe-form"
+          action="{{ section.settings.newsletter_action | default: '#' }}"
+          method="POST"
+        >
+          <input type="email" placeholder="Enter your email" class="footer__subscribe-input">
+          <button type="submit" class="footer__subscribe-btn">Subscribe</button>
+        </form>
+        <div class="footer__social">
+          <span class="footer__social-label">Follow us</span>
+          <a href="{{ section.settings.facebook_url | default: '#' }}" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="{{ section.settings.instagram_url | default: '#' }}" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="{{ section.settings.youtube_url | default: '#' }}" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <span class="footer__social-separator">|</span>
+          <span class="footer__social-share">Share</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== কপিরাইট ===== -->
+    <div class="footer__bottom">
+      <p class="footer__copyright">Copyright © {{ 'now' | date: '%Y' }} Dermalift | Developed by ReadyDropsites</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Informations Links"
+    },
+    {
+      "type": "url",
+      "id": "privacy_link",
+      "label": "Privacy Policy Link"
+    },
+    {
+      "type": "url",
+      "id": "refund_link",
+      "label": "Refund Policy Link"
+    },
+    {
+      "type": "url",
+      "id": "terms_link",
+      "label": "Terms of Service Link"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter & Social"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_action",
+      "label": "Newsletter Form Action URL",
+      "default": "#"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

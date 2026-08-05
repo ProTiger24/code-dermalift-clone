@@ -1,0 +1,28 @@
+{{ 'hero-custom.css' | asset_url | stylesheet_tag }}
+
+<section class="hero-section" style="background-image: url('{{ 'hero-bg.png' | asset_url }}'); background-size: cover; background-position: center;">
+  <div class="hero-overlay"></div>
+  <div class="hero-container page-width">
+    <div class="hero-content">
+      <span class="hero-badge">Enjoy Free Shipping Today • 30-Day Happiness Guarantee</span>
+      <h1 class="hero-title">Dermalift<sup>™</sup></h1>
+      <p class="hero-subtitle">Advanced EMS Facial Sculpting Technology — At Home</p>
+      <h2 class="hero-headline">Lift Your Face. Restore Youthful Definition.</h2>
+      <p class="hero-description">Dermalift™ is a refined approach to facial rejuvenation, inspired by professional aesthetic treatments. Gentle technology works beneath the surface to refresh, sculpt, and restore.</p>
+      <a href="/collections/all" class="hero-btn">Shop Dermalift™</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Custom",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Hero Custom",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}

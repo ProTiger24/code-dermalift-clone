@@ -1,0 +1,34 @@
+{{ 'how-it-works.css' | asset_url | stylesheet_tag }}
+
+<section class="how-it-works-section">
+  <div class="how-it-works-container page-width">
+    <div class="how-it-works-content">
+      <h2 class="how-it-works-title">How It Works</h2>
+      <h3 class="how-it-works-subtitle">Medical-Grade Technology That Targets the Root Cause of Aging</h3>
+      <p class="how-it-works-description">
+        DERMALIFT™ is engineered using EMS (Electrical Muscle Stimulation) technology — the same principle used in professional dermatology and aesthetic clinics.
+        <br><br>
+        The device delivers controlled microcurrents deep into facial muscles, causing gentle contractions that strengthen muscle tone, improve blood flow, and stimulate lymphatic drainage. At the same time, the 3D V-shaped rollers mechanically lift and sculpt the skin.
+        <br><br>
+        This dual-action approach helps improve firmness, enhance facial definition, smooth fine lines, and promote a healthier, more youthful appearance — without needles, downtime, or invasive procedures.
+      </p>
+      <a href="#" class="how-it-works-button">See the Technology in Action</a>
+    </div>
+    <div class="how-it-works-image">
+      <img src="{{ 'feature5.webp' | asset_url }}" alt="How Dermalift works" loading="lazy">
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "settings": [],
+  "presets": [
+    {
+      "name": "How It Works",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

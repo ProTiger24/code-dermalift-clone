@@ -1,0 +1,136 @@
+/* ===== Hero Section ===== */
+.hero-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 20px 100px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.40);
+  z-index: 1;
+}
+
+/* ===== Container ===== */
+.hero-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Content ===== */
+.hero-content {
+  max-width: 650px;
+  color: #ffffff;
+  text-align: left;
+}
+
+/* ===== Badge ===== */
+.hero-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(4px);
+  padding: 6px 18px;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* ===== Title ===== */
+.hero-title {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0 0 8px;
+  line-height: 1.1;
+}
+.hero-title sup {
+  font-size: 0.4em;
+  top: -0.3em;
+}
+
+/* ===== Subtitle ===== */
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 24px;
+  letter-spacing: 0.02em;
+}
+
+/* ===== Headline ===== */
+.hero-headline {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+
+/* ===== Description ===== */
+.hero-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 550px;
+  margin: 0 0 32px;
+}
+
+/* ===== Button ===== */
+.hero-btn {
+  display: inline-block;
+  background: #ffffff;
+  color: #1a1a1a;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-btn:hover {
+  background: #f0f0f0;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 40px 16px 60px;
+    min-height: 450px;
+  }
+  .hero-content {
+    text-align: center;
+    max-width: 100%;
+  }
+  .hero-description {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-badge {
+    font-size: 0.65rem;
+    padding: 4px 14px;
+  }
+}

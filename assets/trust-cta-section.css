@@ -1,0 +1,103 @@
+.tcta-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.tcta-box {
+  background: #f4f0fb;
+  border: 1px solid #d9cdef;
+  border-radius: 28px;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.tcta-heading {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #6b3fa0;
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tcta-description {
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.7;
+  max-width: 720px;
+  margin: 0 auto 32px;
+}
+
+.tcta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #6b3fa0;
+  color: #fff;
+  padding: 16px 36px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.tcta-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.tcta-button:hover {
+  opacity: 0.85;
+}
+
+.tcta-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 48px;
+}
+
+.tcta-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8a7ba3;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.tcta-badge-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tcta-badge-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .tcta-box {
+    padding: 40px 24px;
+    border-radius: 20px;
+  }
+  .tcta-heading {
+    font-size: 1.6rem;
+  }
+  .tcta-badges {
+    gap: 20px 28px;
+  }
+  .tcta-badge {
+    font-size: 0.85rem;
+  }
+}

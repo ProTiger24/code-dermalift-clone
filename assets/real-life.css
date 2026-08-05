@@ -1,0 +1,130 @@
+.real-life-section {
+  padding: 60px 20px;
+  background: #ffffff;
+  font-family: 'Inter', -apple-system, sans-serif;
+  max-width: 1200px;
+}
+
+.real-life-container {
+  margin: 0 auto;
+}
+
+.real-life-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.real-life-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.real-life-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 0;
+}
+
+.real-life-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.real-life-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.real-life-video-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #f0ece6;
+  aspect-ratio: 3 / 4;
+  cursor: pointer;
+}
+
+.real-life-video-wrapper:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+.real-life-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.real-life-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s, background 0.3s;
+}
+
+.real-life-video-wrapper:hover .real-life-play-icon {
+  transform: translate(-50%, -50%) scale(1.15);
+  background: rgba(0,0,0,0.65);
+}
+
+.real-life-caption {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  max-width: 90%;
+}
+
+@media (max-width: 768px) {
+  .real-life-section {
+    padding: 40px 16px;
+  }
+  .real-life-title {
+    font-size: 1.7rem;
+  }
+  .real-life-subtitle {
+    font-size: 1rem;
+  }
+  .real-life-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .real-life-card:last-child {
+    grid-column: span 2;
+    max-width: 60%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .real-life-grid {
+    grid-template-columns: 1fr;
+  }
+  .real-life-card:last-child {
+    grid-column: span 1;
+    max-width: 100%;
+  }
+}

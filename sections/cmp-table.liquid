@@ -1,0 +1,68 @@
+{{ 'cmp-table.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<section class="cmp-section">
+  <div class="cmp-container page-width">
+    <h2 class="cmp-heading">THE SMART CHOICE</h2>
+    <p class="cmp-subheading">How DERMALIFT™ Compares</p>
+    <p class="cmp-description">Stop spending thousands on appointments. Get professional-grade results from your vanity.</p>
+
+    <div class="cmp-table-wrapper">
+      <table class="cmp-table">
+        <thead>
+          <tr>
+            <th>Key Features</th>
+            <th>DERMALIFT™</th>
+            <th>Traditional Skincare</th>
+            <th>Professional Treatments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>EMS Microcurrent Tech</td><td><i class="fas fa-check-circle" style="color:#0066ff;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td></tr>
+          <tr><td>3D V-Shaped Sculpting</td><td><i class="fas fa-check-circle" style="color:#0066ff;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td></tr>
+          <tr><td>Activates Facial Muscles</td><td><i class="fas fa-check-circle" style="color:#0066ff;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td></tr>
+          <tr><td>Improves Drainage</td><td><i class="fas fa-check-circle" style="color:#0066ff;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td></tr>
+          <tr><td>Non-Invasive &amp; Needle-Free</td><td><i class="fas fa-check-circle" style="color:#0066ff;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td></tr>
+          <tr><td>Use Anytime at Home</td><td><i class="fas fa-check-circle" style="color:#0066ff;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td></tr>
+          <tr><td>Adjustable Intensity</td><td><i class="fas fa-check-circle" style="color:#0066ff;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td></tr>
+          <tr><td>One-Time Investment</td><td><i class="fas fa-check-circle" style="color:#0066ff;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td><td><i class="fas fa-times-circle" style="color:#999;font-size:1.4rem;"></i></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cmp-cta">
+      <a href="{{ section.settings.button_link | default: '#' }}" class="cmp-button">{{ section.settings.button_text | default: "GET DERMALIFT™ NOW" }}</a>
+      <div class="cmp-badges">
+        <span><i class="fas fa-check-circle" style="color:#0066ff;"></i> Free Insured Shipping</span>
+        <span><i class="fas fa-check-circle" style="color:#0066ff;"></i> 30-Day Money Back Guarantee</span>
+        <span><i class="fas fa-check-circle" style="color:#0066ff;"></i> SSL Encrypted Checkout</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CMP Table",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "GET DERMALIFT™ NOW"
+    },
+    {
+      "type": "text",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "#"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CMP Table",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

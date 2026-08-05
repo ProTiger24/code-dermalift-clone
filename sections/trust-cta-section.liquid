@@ -1,0 +1,128 @@
+{{ 'trust-cta-section.css' | asset_url | stylesheet_tag }}
+
+<section class="tcta-section" data-section-id="{{ section.id }}">
+  <div class="tcta-box">
+    {% if section.settings.heading != blank %}
+      <h2 class="tcta-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.description != blank %}
+      <p class="tcta-description">{{ section.settings.description }}</p>
+    {% endif %}
+    {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_link | default: '#' }}" class="tcta-button">
+        {{ section.settings.button_text }}
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="20" r="1.4" fill="currentColor"/>
+          <circle cx="18" cy="20" r="1.4" fill="currentColor"/>
+          <path d="M2 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+
+  {% if section.blocks.size > 0 %}
+    <div class="tcta-badges">
+      {% for block in section.blocks %}
+        <div class="tcta-badge" {{ block.shopify_attributes }}>
+          <span class="tcta-badge-icon">
+            {% case block.settings.icon %}
+              {% when 'check' %}
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M8 12.5l2.5 2.5L16 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              {% when 'sparkle' %}
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                </svg>
+              {% when 'lock' %}
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              {% when 'shield' %}
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              {% else %}
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+                </svg>
+            {% endcase %}
+          </span>
+          <span class="tcta-badge-text">{{ block.settings.text }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Trust CTA Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Professional Facial Lifting Starts at Home"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "DermaLift™ delivers clinic-inspired facial sculpting technology in a simple, non-invasive device you can use every day. No appointments. No needles. Just visible results over time. Take control of your skin's future — starting today."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop DermaLift™ Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "sparkle", "label": "Sparkle" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "shield", "label": "Shield" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Dermatologist Tested"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Trust CTA Section",
+      "category": "Custom",
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "check", "text": "Dermatologist Tested" } },
+        { "type": "badge", "settings": { "icon": "check", "text": "FDA Approved" } },
+        { "type": "badge", "settings": { "icon": "sparkle", "text": "12,000+ Happy Customers" } },
+        { "type": "badge", "settings": { "icon": "lock", "text": "Secure Checkout" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

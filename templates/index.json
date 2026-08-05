@@ -1,0 +1,71 @@
+{
+  "sections": {
+    "hero-custom": {
+      "type": "hero-custom",
+      "settings": {}
+    },
+    "features": {
+      "type": "features",
+      "settings": {}
+    },
+    "brand-marquee": {
+      "type": "brand-marquee",
+      "settings": {}
+    },
+    "clinical-lift": {
+      "type": "clinical-lift",
+      "settings": {}
+    },
+    "revolution-section": {
+      "type": "revolution-section",
+      "settings": {}
+    },
+    "customer-love": {
+      "type": "customer-love",
+      "settings": {}
+    },
+    "how-it-works": {
+      "type": "how-it-works",
+      "settings": {}
+    },
+    "new-video-section": {
+      "type": "new-video-section",
+      "settings": {}
+    },
+    "customer-carousel": {
+      "type": "customer-carousel",
+      "settings": {}
+    },
+    "before-after": {
+      "type": "before-after",
+      "settings": {}
+    },
+    "cmp-table": {
+      "type": "cmp-table",
+      "settings": {}
+    },
+    "testimonials-marquee": {
+      "type": "testimonials-marquee",
+      "settings": {}
+    },
+    "faq-section": {
+      "type": "faq-section",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero-custom",
+    "brand-marquee",
+    "features",
+    "clinical-lift",
+    "revolution-section",
+    "customer-love",
+    "how-it-works",
+    "new-video-section",
+    "customer-carousel",
+    "before-after",
+    "cmp-table",
+    "testimonials-marquee",
+    "faq-section"
+  ]
+}

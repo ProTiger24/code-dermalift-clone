@@ -1,0 +1,80 @@
+{{ 'brand-marquee.css' | asset_url | stylesheet_tag }}
+
+<section class="brand-marquee-section">
+  <div class="marquee-container page-width">
+    <div class="marquee-track">
+      {% for block in section.blocks %}
+        <div class="brand-item" {{ block.shopify_attributes }}>
+          {% if block.settings.logo %}
+            {{
+              block.settings.logo
+              | image_url: width: 160
+              | image_tag: width: 80, height: 40, loading: 'lazy', alt: block.settings.brand_name
+              | default: 'Brand logo'
+            }}
+          {% else %}
+            <span class="brand-item__placeholder">{{ block.settings.brand_name | default: 'Brand' }}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <!-- Duplicate blocks for seamless scroll -->
+      {% for block in section.blocks %}
+        <div class="brand-item" aria-hidden="true">
+          {% if block.settings.logo %}
+            {{
+              block.settings.logo
+              | image_url: width: 160
+              | image_tag: width: 80, height: 40, loading: 'lazy', alt: ''
+            }}
+          {% else %}
+            <span class="brand-item__placeholder">{{ block.settings.brand_name | default: 'Brand' }}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Marquee",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Brand logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        },
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand name (used as alt text / fallback)",
+          "default": "Brand"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [
+    {
+      "name": "Brand Marquee",
+      "category": "Custom",
+      "blocks": [
+        { "type": "logo", "settings": { "brand_name": "L'Oreal" } },
+        { "type": "logo", "settings": { "brand_name": "Paris" } },
+        { "type": "logo", "settings": { "brand_name": "Clarins" } },
+        { "type": "logo", "settings": { "brand_name": "MAC" } },
+        { "type": "logo", "settings": { "brand_name": "bareMinerals" } },
+        { "type": "logo", "settings": { "brand_name": "Bobbi Brown" } },
+        { "type": "logo", "settings": { "brand_name": "Lancome" } },
+        { "type": "logo", "settings": { "brand_name": "Clinique" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

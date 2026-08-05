@@ -1,0 +1,40 @@
+{{ 'aging-info.css' | asset_url | stylesheet_tag }}
+
+<section class="aging-info-section">
+  <div class="aging-container site-container">
+    <div class="aging-content">
+      <h2 class="aging-title">Facial Aging Starts Beneath the Skin</h2>
+      <p class="aging-subtitle">Why skincare alone isn't enough</p>
+      <p class="aging-description">
+        Loss of muscle tone and reduced circulation cause sagging skin, fine lines, puffiness, and a tired appearance that topical products cannot fully correct.
+      </p>
+      <ul class="aging-list">
+        <li>
+          <span class="aging-icon">⬇️</span>
+          Sagging jawline, cheeks, and loss of facial definition
+        </li>
+        <li>
+          <span class="aging-icon">〰️</span>
+          Fine lines and wrinkles becoming more noticeable
+        </li>
+        <li>
+          <span class="aging-icon">💧</span>
+          Puffiness and dull skin from poor circulation
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Aging Info",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Aging Info",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

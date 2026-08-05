@@ -1,0 +1,147 @@
+.sf-footer {
+  font-family: 'Inter', -apple-system, sans-serif;
+  display: block;
+  width: 100%;
+}
+.sf-footer * {
+  box-sizing: border-box;
+}
+.sf-main {
+  background: #f4f0fb;
+  padding: 60px 40px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1.4fr 1fr 1fr 1.4fr;
+  gap: 40px;
+  max-width: 1300px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.sf-logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+.sf-description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333;
+  max-width: 400px;
+}
+.sf-heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+}
+.sf-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sf-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.sf-links a:hover {
+  text-decoration: underline;
+}
+.sf-subscribe-text {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0 0 20px;
+}
+.sf-subscribe-form {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 999px;
+  padding: 6px 6px 6px 16px;
+  gap: 8px;
+}
+.sf-mail-icon {
+  width: 18px;
+  height: 18px;
+  color: #999;
+  flex-shrink: 0;
+}
+.sf-mail-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.sf-subscribe-form input[type="email"] {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.92rem;
+  padding: 10px 0;
+  background: transparent;
+  font-family: inherit;
+}
+.sf-subscribe-form button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sf-subscribe-form button svg {
+  width: 16px;
+  height: 16px;
+}
+.sf-subscribe-success {
+  margin: 10px 0 0;
+  font-size: 0.88rem;
+  color: #2e7d32;
+}
+.sf-socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+.sf-socials a {
+  width: 20px;
+  height: 20px;
+  color: #1a1a1a;
+}
+.sf-socials svg {
+  width: 100%;
+  height: 100%;
+}
+.sf-bottom {
+  display: block;
+  width: 100%;
+  background: #1a0f2e;
+  text-align: center;
+  padding: 24px 20px;
+  box-sizing: border-box;
+}
+.sf-bottom p {
+  margin: 0;
+  color: #cfc6df;
+  font-size: 0.9rem;
+}
+@media (max-width: 900px) {
+  .sf-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+@media (max-width: 600px) {
+  .sf-main {
+    grid-template-columns: 1fr;
+    padding: 40px 24px;
+  }
+}

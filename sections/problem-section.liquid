@@ -1,0 +1,172 @@
+{{ 'problem-section.css' | asset_url | stylesheet_tag }}
+
+<section class="problem-section">
+  <div class="problem-container">
+    <div class="problem-image">
+      {% if section.settings.image %}
+        {{
+          section.settings.image
+          | image_url: width: 1200
+          | image_tag: loading: 'lazy', alt: section.settings.image.alt
+          | default: section.settings.heading
+        }}
+      {% else %}
+        <div class="problem-image__placeholder"></div>
+      {% endif %}
+    </div>
+
+    <div class="problem-content">
+      {% if section.settings.heading != blank %}
+        <h2 class="problem-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="problem-subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="problem-description">{{ section.settings.description }}</div>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="problem-list">
+          {% for block in section.blocks %}
+            <div class="problem-list__item" {{ block.shopify_attributes }}>
+              <span class="problem-list__icon">
+                {% case block.settings.icon %}
+                  {% when 'sad_face' %}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+                      <path d="M8 15c1-1.3 2.3-2 4-2s3 0.7 4 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                      <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                      <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                    </svg>
+                  {% when 'hourglass' %}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 3h10M7 21h10M7 3c0 4 3.5 5 5 6-1.5 1-5 2-5 6M17 3c0 4-3.5 5-5 6 1.5 1 5 2 5 6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    </svg>
+                  {% when 'wave' %}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 9c1.5-2 3.5-2 5 0s3.5 2 5 0 3.5-2 5 0 3.5 2 5 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                      <path d="M3 15c1.5-2 3.5-2 5 0s3.5 2 5 0 3.5-2 5 0 3.5 2 5 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                  {% when 'droplet' %}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    </svg>
+                  {% when 'shield' %}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    </svg>
+                  {% when 'sparkle' %}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                    </svg>
+                  {% else %}
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+                    </svg>
+                {% endcase %}
+              </span>
+              <span class="problem-list__text">{{ block.settings.text }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="problem-button">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Problem Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Facial Aging Starts Beneath the Skin"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Why skincare alone isn't enough"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Loss of muscle tone and reduced circulation cause sagging skin, fine lines, puffiness, and a tired appearance that topical products cannot fully correct.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop DERMALIFT™"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "list_item",
+      "name": "List item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "sad_face", "label": "Sad face" },
+            { "value": "hourglass", "label": "Hourglass" },
+            { "value": "wave", "label": "Wave lines" },
+            { "value": "droplet", "label": "Droplet" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "sparkle", "label": "Sparkle" }
+          ],
+          "default": "sad_face"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Sagging jawline, cheeks, and loss of facial definition"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Problem Section",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "list_item",
+          "settings": { "icon": "sad_face", "text": "Sagging jawline, cheeks, and loss of facial definition" }
+        },
+        {
+          "type": "list_item",
+          "settings": { "icon": "hourglass", "text": "Fine lines and wrinkles becoming more noticeable" }
+        },
+        { "type": "list_item", "settings": { "icon": "wave", "text": "Puffiness and dull skin from poor circulation" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

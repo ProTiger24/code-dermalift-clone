@@ -1,0 +1,61 @@
+{{ 'revolution-section.css' | asset_url | stylesheet_tag }}
+
+<section class="revolution-section">
+  <div class="revolution-container site-container">
+    <div class="revolution-content">
+      <h2 class="revolution-title">The Dermalift<sup>™</sup> Revolution Starts Here</h2>
+      <p class="revolution-subtitle">Your Daily Ritual for Fuller, Finer, More Vibrant face.</p>
+      <a
+        href="https://www.dermalift.top/products/v-face-lifting-skin-tightening-skin-care-wrinkle-remover-face-sculpting-tools-ems-microcurrent-3d-roller-massager"
+        class="revolution-button"
+        >Shop Now</a
+      >
+    </div>
+    <div class="revolution-images">
+      <div class="revolution-image">
+        <img src="{{ 'feauter3.webp' | asset_url }}" alt="Dermalift product" width="800" height="960" loading="lazy">
+      </div>
+      <div class="revolution-image">
+        <img src="{{ 'feauter4.webp' | asset_url }}" alt="Dermalift result" width="800" height="960" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Revolution Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The Dermalift™ Revolution Starts Here"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Your Daily Ritual for Fuller, Finer, More Vibrant face."
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Revolution Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,65 @@
+python3 -c "
+import json, os
+
+file = 'config/settings_data.json'
+
+if os.path.exists(file):
+    with open(file, 'r') as f:
+        data = json.load(f)
+else:
+    data = {}
+
+# নিশ্চিত করুন sections ও header আছে
+if 'sections' not in data:
+    data['sections'
+] = {}
+
+if 'header' not in data['sections'
+]:
+    data['sections'
+]['header'
+] = {'type': 'header', 'settings': {}
+}
+
+if 'settings' not in data['sections'
+]['header'
+]:
+    data['sections'
+]['header'
+]['settings'
+] = {}
+
+# 🔥 মূল কাজ: ৩টি আইকন চালু করুন
+data['sections'
+]['header'
+]['settings'
+]['enable_search'
+] = True
+data['sections'
+]['header'
+]['settings'
+]['enable_account'
+] = True
+data['sections'
+]['header'
+]['settings'
+]['enable_cart'
+] = True
+
+# (অপশনাল) লোগো মুছে দিন, যাতে স্টোরের নাম দেখায়
+if 'logo' in data['sections'
+]['header'
+]['settings'
+]:
+    data['sections'
+]['header'
+]['settings'
+]['logo'
+] = None
+
+# ফাইলটি সেভ করুন
+with open(file, 'w') as f:
+    json.dump(data, f, indent=2)
+
+print('✅ Header settings updated successfully!')
+"

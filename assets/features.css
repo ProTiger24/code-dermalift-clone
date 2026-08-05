@@ -1,0 +1,127 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  max-width: 1200px;
+}
+.features-section {
+  padding: 60px 40px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #faf6f0;
+}
+
+.features-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.features-content {
+  order: 2; /* টেক্সট ডানে */
+}
+
+.features-image {
+  order: 1; /* ছবি বামে */
+}
+
+.features-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+.features-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.features-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 0 0 16px;
+  font-style: italic;
+}
+
+.features-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 28px;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid #e5e0db;
+  border-radius: 12px;
+  background: #ffffff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.feature-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6b3fa0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.feature-item strong {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+  .features-section {
+    padding: 32px 20px;
+  }
+  .features-container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .features-content {
+    order: 2; /* মোবাইলে টেক্সট নিচে */
+  }
+  .features-image {
+    order: 1; /* মোবাইলে ছবি উপরে */
+  }
+  .features-title {
+    font-size: 1.6rem;
+  }
+}
