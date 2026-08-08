@@ -1,0 +1,703 @@
+{% layout 'theme' %}
+
+<style>
+  :root {
+    --primary-color: #5d308c;
+    --sale-red: #d1192e;
+    --save-green: #118d36;
+    --text-dark: #1a1a1a;
+    --text-light: #555;
+    --border-color: #e5e5e5;
+  }
+
+  .product-page {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 40px 0 !important;
+    background: #ffffff !important;
+    font-family: 'Inter', -apple-system, sans-serif;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+  }
+  .product-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .product-image-carousel {
+    position: relative;
+    width: 100%;
+  }
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+    height: 100%;
+    width: 100%;
+  }
+  .carousel-slide { flex: 0 0 100%; height: 100%; background: #f9f9f9; }
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid #ddd;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-arrow:hover { background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .prev-arrow { left: 12px; }
+  .next-arrow { right: 12px; }
+  .thumbnail-container {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+  .thumbnail {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    background: #f9f9f9;
+  }
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .thumbnail.active { border-color: var(--text-dark); }
+  .review-section {
+    background: #f8f6f3;
+    padding: 24px;
+    border-radius: 12px;
+    position: relative;
+  }
+  .review-quote-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    line-height: 0;
+    position: absolute;
+    top: 35px;
+    left: 20px;
+    font-family: Georgia, serif;
+    opacity: 0.8;
+  }
+  .review-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    font-style: italic;
+    margin: 0 0 16px;
+    position: relative;
+    z-index: 1;
+    padding-left: 30px;
+  }
+  .review-author-box {
+    text-align: center;
+    margin-top: 15px;
+  }
+  .review-stars { color: #118d36; font-size: 1.1rem; margin-bottom: 4px; }
+  .review-author {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  .review-verified { color: #118d36; font-weight: normal; }
+  .review-location {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    display: block;
+    margin-top: 2px;
+  }
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stars { color: #f5a623; font-size: 1.1rem; }
+  .rating-text { font-size: 0.9rem; color: var(--text-light); font-weight: 500; }
+  .product-subtitle {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin: 0;
+  }
+  .product-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin: -8px 0 0 0;
+    line-height: 1.2;
+  }
+  .product-price {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .price-original {
+    font-size: 1.1rem;
+    color: #888;
+    text-decoration: line-through;
+    font-weight: 500;
+  }
+  .price-sale { font-size: 1.5rem; font-weight: 700; color: var(--sale-red); }
+  .price-save {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--save-green);
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .product-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 8px 0;
+  }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .feature-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--primary-color);
+  }
+  .feature-text { font-size: 1rem; line-height: 1.4; color: var(--text-dark); }
+  .product-color-section { margin-top: 10px; }
+  .color-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .color-label span { font-weight: 400; }
+  .swatch-container { display: flex; gap: 12px; }
+  .swatch {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 2px;
+  }
+  .swatch img { width: 100%; height: 100%; object-fit: contain; }
+  .swatch.active { border-color: var(--text-dark); }
+  .form-section { margin-top: 10px; }
+  .qty-label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .add-to-cart-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+  }
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    height: 48px;
+    width: 120px;
+  }
+  .qty-btn {
+    width: 40px;
+    height: 100%;
+    border: none;
+    background: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-dark);
+  }
+  .qty-btn:hover { background: #f0f0f0; }
+  #qty-input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+    -moz-appearance: textfield;
+  }
+  #qty-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .add-to-cart-form { flex: 1; }
+  .add-to-cart-btn {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: var(--text-dark);
+    border: 2px solid var(--text-dark);
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .add-to-cart-btn:hover {
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
+  }
+  .buy-now-form { width: 100%; }
+  .buy-now-btn {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .buy-now-btn:hover { background: #4a2574; }
+  .trust-slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    margin-top: 10px;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .trust-slider-text {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    height: 20px;
+    overflow: hidden;
+  }
+  .trust-slide {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .trust-slide.active { opacity: 1; position: relative; }
+  .trust-arrow {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0 5px;
+  }
+  .our-promise-section {
+    margin-top: 24px;
+    text-align: center;
+  }
+  .promise-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+  }
+  .promise-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .promise-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    gap: 8px;
+  }
+  .promise-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--primary-color);
+  }
+  .promise-icon svg { width: 100%; height: 100%; }
+  .action-links {
+    display: flex;
+    gap: 30px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+  }
+  .action-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .action-link:hover { color: var(--text-dark); }
+  .action-link svg { width: 16px; height: 16px; }
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-box {
+    background: #fff; padding: 28px 32px; border-radius: 12px;
+    max-width: 460px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 15px; right: 20px; font-size: 1.4rem;
+    cursor: pointer; background: none; border: none; color: #999;
+  }
+  .modal-form label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem;}
+  .modal-form input, .modal-form textarea {
+    width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px;
+  }
+  .modal-submit { width: 100%; padding: 12px; background: var(--primary-color); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;}
+  .share-options { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 20px;}
+  .share-options button { padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer; color: white; font-weight: 500;}
+  .share-copy { background: #333; }
+  .share-facebook { background: #1877f2; }
+  .share-twitter { background: #000; }
+  .share-whatsapp { background: #25d366; }
+  @media (max-width: 768px) {
+    .product-container { grid-template-columns: 1fr; gap: 30px; }
+    .product-title { font-size: 1.6rem; }
+    .add-to-cart-row { flex-direction: column; }
+    .quantity-selector { width: 100%; justify-content: center; }
+    .promise-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+</style>
+
+<section class="product-page">
+  <div class="product-container">
+    <div class="left-column">
+      <div class="product-image-carousel">
+        <div class="carousel-container">
+          <div class="carousel-track" id="carouselTrack">
+            {% if product.images.size > 0 %}
+              {% for image in product.images %}
+                <div class="carousel-slide" data-index="{{ forloop.index0 }}">
+                  <img src="{{ image | image_url: width: 800 }}" alt="{{ product.title }}" loading="lazy">
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="carousel-slide">
+                <div style="padding: 40px; text-align: center;">No product images</div>
+              </div>
+            {% endif %}
+          </div>
+          {% if product.images.size > 1 %}
+            <button class="carousel-arrow prev-arrow" onclick="moveSlide(-1)">❮</button>
+            <button class="carousel-arrow next-arrow" onclick="moveSlide(1)">❯</button>
+          {% endif %}
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="thumbnail-container">
+            {% for image in product.images %}
+              <div class="thumbnail {% if forloop.first %}active{% endif %}" onclick="goToSlide({{ forloop.index0 }})">
+                <img src="{{ image | image_url: width: 100 }}" alt="{{ product.title }}" loading="lazy">
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="review-section">
+        <span class="review-quote-icon">“</span>
+        <p class="review-text">I didn't expect dramatic changes overnight, but after a few weeks of consistent use, my face looks noticeably firmer and more defined — especially around my jawline and cheeks. It feels gentle, relaxing, and easy to fit into my routine. Honestly feels like a professional treatment I can do at home.</p>
+        <div class="review-author-box">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-author">Sarah M. <span class="review-verified">● Verified Buyer</span></div>
+          <span class="review-location">New York, USA</span>
+        </div>
+      </div>
+    </div>
+    <div class="right-column">
+      <div class="product-info">
+        <div class="product-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.9/5 ratings based on 12,000+ Customers</span>
+        </div>
+        <h2 class="product-subtitle">Visible Facial Lift in Just Minutes a Day</h2>
+        <h1 class="product-title">DermaLift™ Pro Facial Sculptor</h1>
+        <div class="product-price">
+          <span class="price-original">$107.00</span>
+          <span class="price-sale">($99.99)</span>
+          <span class="price-save">SAVE 6%</span>
+        </div>
+        <div class="product-features">
+          <div class="feature-item">
+            <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+            <span class="feature-text"><strong>EMS micro-current</strong> activates facial muscles</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+            <span class="feature-text"><strong>V-shaped</strong> 3D rollers sculpt jawline & cheeks</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+            <span class="feature-text">Encourages <strong>stronger, thicker</strong> and healthier hair.</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+            <span class="feature-text"><strong>Dermatologist-endorsed</strong> for daily uses</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+            <span class="feature-text">Suitable for all <strong>skin types</strong></span>
+          </div>
+        </div>
+        <div class="product-color-section">
+          <label class="color-label">Color: <span id="selected-color">Black</span></label>
+          <div class="swatch-container">
+            <div class="swatch active" onclick="selectColor('Black', this)">
+              <img src="{{ product.featured_image | image_url: width: 100 }}" alt="Black" style="background:#000;">
+            </div>
+            <div class="swatch" onclick="selectColor('White', this)">
+              <img src="{{ product.featured_image | image_url: width: 100 }}" alt="White" style="background:#fff; filter: invert(1);">
+            </div>
+          </div>
+        </div>
+        <div class="form-section">
+          <label class="qty-label">Quantity</label>
+          <div class="add-to-cart-row">
+            <div class="quantity-selector">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <input type="number" id="qty-input" value="1" min="1" max="99">
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+            <form method="post" action="/cart/add" class="add-to-cart-form">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <input type="hidden" name="quantity" id="cart-quantity" value="1">
+              <button type="submit" class="add-to-cart-btn">
+                Add to cart | <span style="text-decoration:line-through;color:#888;margin:0 5px;">$107.00</span> <span style="color:var(--sale-red);">($99.99)</span>
+              </button>
+            </form>
+          </div>
+          <form method="post" action="/cart/add" class="buy-now-form">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" id="buy-now-qty" value="1">
+            <input type="hidden" name="checkout" value="true">
+            <button type="submit" class="buy-now-btn">Buy It Now</button>
+          </form>
+        </div>
+        <div class="trust-slider-container">
+          <button class="trust-arrow" onclick="changeTrustSlide(-1)">❮</button>
+          <div class="trust-slider-text">
+            <div class="trust-slide active">Don't Miss Out - Limited Stock Available!</div>
+            <div class="trust-slide">Trusted by Thousands Worldwide</div>
+            <div class="trust-slide">Non-Invasive & Safe for Daily Use</div>
+          </div>
+          <button class="trust-arrow" onclick="changeTrustSlide(1)">❯</button>
+        </div>
+        <div class="our-promise-section">
+          <div class="promise-title">OUR PROMISE:</div>
+          <div class="promise-grid">
+            <div class="promise-item">
+              <div class="promise-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"></path></svg></div>
+              Fast & Secure<br>Shipping
+            </div>
+            <div class="promise-item">
+              <div class="promise-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"></path></svg></div>
+              100% Safe &<br>Genuine
+            </div>
+            <div class="promise-item">
+              <div class="promise-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path></svg></div>
+              Money-Back<br>Guarantee
+            </div>
+            <div class="promise-item">
+              <div class="promise-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"></path></svg></div>
+              Secure Payment<br>System
+            </div>
+          </div>
+        </div>
+        <div class="action-links">
+          <button class="action-link" onclick="openModal('questionModal')">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Ask a Question
+          </button>
+          <button class="action-link" onclick="openModal('shareModal')">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"></path></svg>
+            Share
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="questionModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('questionModal')">✕</button>
+    <h3 style="margin-top:0;">Ask a Question</h3>
+    <form class="modal-form" onsubmit="submitQuestion(event)">
+      <label>Your Name *</label><input type="text" id="q-name" required placeholder="Your name">
+      <label>Your Email *</label><input type="email" id="q-email" required placeholder="Your email">
+      <label>Your Message *</label><textarea id="q-message" rows="4" required placeholder="Your message"></textarea>
+      <button type="submit" class="modal-submit">Submit Now</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="shareModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('shareModal')">✕</button>
+    <h3 style="margin-top:0; text-align:center;">Share</h3>
+    <div class="share-options">
+      <button class="share-copy" onclick="copyLink()">📋 Copy Link</button>
+      <button class="share-facebook" onclick="shareFacebook()">📘 Facebook</button>
+      <button class="share-twitter" onclick="shareTwitter()">🐦 Twitter</button>
+      <button class="share-whatsapp" onclick="shareWhatsApp()">💬 WhatsApp</button>
+    </div>
+    <p style="text-align:center;margin-top:12px;font-size:0.8rem;color:#999;" id="copyMessage"></p>
+  </div>
+</div>
+
+<script>
+var currentSlide = 0;
+var totalSlides = {{ product.images.size | default: 1 }};
+
+function moveSlide(direction) {
+  if(totalSlides <= 1) return;
+  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+  updateCarousel();
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  updateCarousel();
+}
+
+function updateCarousel() {
+  var track = document.getElementById('carouselTrack');
+  if (track) track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+  document.querySelectorAll('.thumbnail').forEach(function(t, i) {
+    t.classList.toggle('active', i === currentSlide);
+  });
+}
+
+function changeQty(delta) {
+  var input = document.getElementById('qty-input');
+  var val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  if (val > 99) val = 99;
+  input.value = val;
+  document.getElementById('cart-quantity').value = val;
+  document.getElementById('buy-now-qty').value = val;
+}
+
+function selectColor(colorName, element) {
+  document.getElementById('selected-color').innerText = colorName;
+  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+  element.classList.add('active');
+}
+
+var trustSlideIndex = 0;
+var trustSlides = document.querySelectorAll('.trust-slide');
+function changeTrustSlide(dir) {
+  trustSlides[trustSlideIndex].classList.remove('active');
+  trustSlideIndex = (trustSlideIndex + dir + trustSlides.length) % trustSlides.length;
+  trustSlides[trustSlideIndex].classList.add('active');
+}
+setInterval(function(){ changeTrustSlide(1); }, 4000);
+
+function openModal(id) { document.getElementById(id).classList.add('active'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+document.querySelectorAll('.modal-overlay').forEach(function(o) {
+  o.addEventListener('click', function(e) { if (e.target === this) closeModal(this.id); });
+});
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    document.getElementById('copyMessage').textContent = 'Link copied!';
+    setTimeout(() => document.getElementById('copyMessage').textContent = '', 2000);
+  });
+}
+function shareFacebook() { window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400'); }
+function shareTwitter() { window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400'); }
+function shareWhatsApp() { window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400'); }
+
+function submitQuestion(e) {
+  e.preventDefault();
+  alert('Thank you for your question! We will get back to you soon.');
+  closeModal('questionModal');
+}
+</script>

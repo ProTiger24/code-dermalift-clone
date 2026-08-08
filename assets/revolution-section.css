@@ -1,25 +1,29 @@
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', -apple-system, sans-serif;
-  max-width: 1200px;
-}
+/* ===== Revolution Section ===== */
 .revolution-section {
-  padding: 60px 20px;
-  background: #faf6f0;
+  padding: 60px 0 !important;
+  background: #6B6767 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
   font-family: 'Inter', -apple-system, sans-serif;
 }
 
+/* ===== Container (Content Centered) ===== */
 .revolution-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
 }
 
+/* ===== Content ===== */
 .revolution-content {
   text-align: center;
   display: flex;
@@ -27,12 +31,13 @@
   align-items: center;
   gap: 16px;
   max-width: 800px;
+  width: 100%;
 }
 
 .revolution-title {
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: 2.8rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #ffffff;
   letter-spacing: -0.02em;
   line-height: 1.15;
   margin: 0;
@@ -44,8 +49,8 @@
 }
 
 .revolution-subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  color: #555;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 400;
   margin: 0 0 8px;
   line-height: 1.6;
@@ -53,22 +58,24 @@
 
 .revolution-button {
   display: inline-block;
-  background: #6b3fa0;
-  color: #ffffff;
+  background: #ffffff;
+  color: #1a1a1a;
   padding: 14px 40px;
   border-radius: 50px;
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
-  transition: opacity 0.3s, transform 0.2s;
-  box-shadow: 0 4px 16px rgba(107, 63, 160, 0.25);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .revolution-button:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
+  background: #f0f0f0;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
+/* ===== Images ===== */
 .revolution-images {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -82,7 +89,7 @@
   border-radius: 16px;
   display: block;
   object-fit: cover;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s;
 }
 
@@ -90,24 +97,22 @@
   transform: scale(1.02);
 }
 
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
   .revolution-section {
-    padding: 40px 16px;
+    padding: 40px 0 !important;
   }
-
   .revolution-container {
     gap: 24px;
+    padding: 0 16px;
   }
-
   .revolution-images {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-
   .revolution-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
-
   .revolution-subtitle {
     font-size: 1rem;
   }

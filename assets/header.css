@@ -1,0 +1,142 @@
+/* ===== Header / Navbar ===== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: #ffffff;
+  padding: 12px 20px;
+  border-bottom: 1px solid #e5e5e5;
+  font-family: 'Inter', -apple-system, sans-serif;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+body {
+  padding-top: 80px;
+}
+
+/* ===== Header Wrapper (Content 1200px) ===== */
+.header-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== Logo ===== */
+.header-logo a {
+  display: block;
+  line-height: 0;
+}
+
+.header-logo img {
+  height: 38px;
+  width: auto;
+  display: block;
+  max-width: 150px;
+}
+
+/* ===== Navigation ===== */
+.header-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.header-nav ul li a {
+  position: relative;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.header-nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #1a1a1a;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.header-nav ul li a:hover {
+  color: #000;
+}
+
+.header-nav ul li a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ===== Right Icons ===== */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-icons a {
+  position: relative;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #1a1a1a;
+  transition: color 0.2s;
+}
+
+.header-icons a:hover {
+  color: #000;
+}
+
+.header-icons a .tooltip {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 2px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.header-icons a:hover .tooltip {
+  opacity: 1;
+}
+
+.cart-count {
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 30px;
+  margin-left: 3px;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .header-nav {
+    display: none;
+  }
+  .header-wrapper {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .header-logo img {
+    height: 30px;
+    max-width: 120px;
+  }
+}

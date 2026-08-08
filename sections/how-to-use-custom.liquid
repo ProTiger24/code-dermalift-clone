@@ -1,0 +1,180 @@
+<style>
+  .how-to-use-section {
+    background-color: #ffffff;
+    width: 100%;
+    font-family: 'Inter', -apple-system, sans-serif;
+    padding: 60px 0;
+  }
+  .how-to-use-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .how-to-use-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 50px;
+    letter-spacing: -0.02em;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .step-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px 20px 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .step-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  }
+  .step-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background: #f5f0eb;
+    transition: transform 0.3s ease;
+  }
+  .step-card:hover .step-image-wrapper {
+    transform: scale(1.02);
+  }
+  .step-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .step-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0ece6;
+    color: #aaa;
+    font-size: 0.9rem;
+  }
+  .step-badge {
+    display: inline-block;
+    border: 2px solid #5d308c;
+    border-radius: 30px;
+    padding: 4px 22px;
+    color: #5d308c;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .step-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 10px 0;
+  }
+  .step-desc {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .how-to-use-section { padding: 40px 0; }
+    .how-to-use-title { font-size: 1.8rem; }
+    .steps-grid { grid-template-columns: 1fr; gap: 24px; }
+    .step-card { padding: 20px 16px 24px; }
+  }
+</style>
+
+<section class="how-to-use-section">
+  <div class="how-to-use-container">
+    <h2 class="how-to-use-title">{{ section.settings.section_title | default: "How to use, 5-Minute Relaxing Routine" }}</h2>
+    
+    <div class="steps-grid">
+      {% for block in section.blocks limit: 3 %}
+        <div class="step-card">
+          <div class="step-image-wrapper">
+            {% if block.settings.step_image != blank %}
+              <img src="{{ block.settings.step_image | image_url: width: 600 }}" alt="{{ block.settings.step_title }}" loading="lazy">
+            {% else %}
+              <div class="step-image-placeholder">Upload Image</div>
+            {% endif %}
+          </div>
+          <div class="step-badge">{{ block.settings.step_badge | default: "Step 1" }}</div>
+          <h3 class="step-title">{{ block.settings.step_title | default: "Apply Serum or Gel" }}</h3>
+          <p class="step-desc">{{ block.settings.step_desc | default: "Start with clean skin and apply a conductive serum..." }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How To Use",
+  "enabled_on": {
+    "templates": ["*"],
+    "groups": ["*"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "How to use, 5-Minute Relaxing Routine"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "step_image",
+          "label": "Step Image"
+        },
+        {
+          "type": "text",
+          "id": "step_badge",
+          "label": "Step Badge Text",
+          "default": "Step 1"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title",
+          "default": "Apply Serum or Gel"
+        },
+        {
+          "type": "textarea",
+          "id": "step_desc",
+          "label": "Step Description",
+          "default": "Start with clean skin and apply a conductive serum..."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How To Use",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ]
+}
+{% endschema %}

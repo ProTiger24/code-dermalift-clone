@@ -1,0 +1,97 @@
+.aging-info-section {
+  padding: 60px 0 !important;
+  background: #faf6f0 !important;
+  font-family: 'Inter', -apple-system, sans-serif;
+  
+  width: 100vw !important;
+  max-width: 100vw !important;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+}
+
+.aging-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.aging-content {
+  text-align: center;
+}
+
+.aging-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.aging-subtitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #555;
+  margin: 0 0 20px;
+  font-style: italic;
+}
+
+.aging-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  max-width: 650px;
+  margin: 0 auto 30px;
+}
+
+.aging-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 550px;
+  text-align: left;
+}
+
+.aging-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.aging-list li:last-child {
+  border-bottom: none;
+}
+
+.aging-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  width: 32px;
+  text-align: center;
+  margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .aging-info-section {
+    padding: 40px 0 !important;
+  }
+  .aging-container {
+    padding: 0 16px;
+  }
+  .aging-title {
+    font-size: 1.6rem;
+  }
+  .aging-subtitle {
+    font-size: 1rem;
+  }
+  .aging-list li {
+    font-size: 0.9rem;
+    padding: 8px 0;
+  }
+}

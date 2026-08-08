@@ -1,0 +1,109 @@
+<style>
+  .brand-marquee-wrapper {
+    margin: 20px 0;
+    width: 100%;
+    overflow: hidden;
+  }
+  .brand-marquee-container {
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    padding: 25px 0;
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    background: #ffffff;
+  }
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    animation: scrollMarquee 20s linear infinite;
+  }
+  .brand-marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  .marquee-logo {
+    display: inline-block;
+    padding: 0 40px;
+  }
+  .marquee-logo img {
+    height: 35px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  .marquee-logo img:hover {
+    opacity: 1;
+  }
+  @keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (max-width: 768px) {
+    .marquee-logo { padding: 0 25px; }
+    .marquee-logo img { height: 30px; }
+  }
+</style>
+
+<section class="brand-marquee-wrapper">
+  <div class="brand-marquee-container">
+    <div class="marquee-track">
+      {% for block in section.blocks %}
+        <div class="marquee-logo">
+          {% if block.settings.brand_logo != blank %}
+            <img src="{{ block.settings.brand_logo | image_url: height: 100 }}" alt="Brand Logo" loading="lazy">
+          {% else %}
+            <div style="height:35px; width:120px; background:#ddd; line-height:35px; text-align:center; color:#555; border-radius:4px; font-size:12px;">Logo</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+      {% for block in section.blocks %}
+        <div class="marquee-logo">
+          {% if block.settings.brand_logo != blank %}
+            <img src="{{ block.settings.brand_logo | image_url: height: 100 }}" alt="Brand Logo" loading="lazy">
+          {% else %}
+            <div style="height:35px; width:120px; background:#ddd; line-height:35px; text-align:center; color:#555; border-radius:4px; font-size:12px;">Logo</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Marquee",
+  "enabled_on": {
+    "templates": ["*"],
+    "groups": ["*"]
+  },
+  "settings": [],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Brand Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "brand_logo",
+          "label": "Upload Logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Marquee",
+      "blocks": [
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

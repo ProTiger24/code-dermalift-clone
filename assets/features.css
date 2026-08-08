@@ -1,31 +1,35 @@
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', -apple-system, sans-serif;
-  max-width: 1200px;
-}
+/* ===== Features Section ===== */
 .features-section {
-  padding: 60px 40px;
+  padding: 60px 0 !important;
+  background: #faf6f0 !important;
   font-family: 'Inter', -apple-system, sans-serif;
-  background: #faf6f0;
+  
+  width: 100vw !important;
+  max-width: 100vw !important;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
 }
 
+/* ===== Container (Content Centered) ===== */
 .features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
   align-items: center;
 }
 
 .features-content {
-  order: 2; /* টেক্সট ডানে */
+  order: 1;
 }
 
 .features-image {
-  order: 1; /* ছবি বামে */
+  order: 2;
 }
 
 .features-image img {
@@ -34,7 +38,7 @@
   border-radius: 16px;
   display: block;
   object-fit: cover;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
 }
 
 .features-title {
@@ -75,12 +79,12 @@
   border-radius: 12px;
   background: #ffffff;
   transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .feature-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 .feature-icon {
@@ -107,19 +111,21 @@
   color: #1a1a1a;
 }
 
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
   .features-section {
-    padding: 32px 20px;
+    padding: 40px 0 !important;
   }
   .features-container {
     grid-template-columns: 1fr;
     gap: 32px;
+    padding: 0 16px;
   }
   .features-content {
-    order: 2; /* মোবাইলে টেক্সট নিচে */
+    order: 2;
   }
   .features-image {
-    order: 1; /* মোবাইলে ছবি উপরে */
+    order: 1;
   }
   .features-title {
     font-size: 1.6rem;

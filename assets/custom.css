@@ -60,3 +60,19 @@
     display: none !important;
   }
 }
+
+/* ===== Brand Marquee Spacing Fix ===== */
+.brand-marquee-wrapper {
+  margin-top: 10px !important;  /* 30px থেকে 10px করা হলো */
+  margin-bottom: 10px !important;
+}
+
+.brand-marquee-container {
+  padding: 15px 0 !important;   /* 25px থেকে 15px করা হলো */
+}
+
+@media (max-width: 768px) {
+  .brand-marquee-container {
+    padding: 10px 0 !important;
+  }
+}

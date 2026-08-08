@@ -1,0 +1,378 @@
+<style>
+  .pf-showcase-wrapper {
+    background-color: #ffffff;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    padding: 60px 20px;
+  }
+
+  .pf-showcase-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+
+  /* Left Side: Image & Overlays */
+  .pf-image-col {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #f7f7f7;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pf-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Floating Clinic Badge */
+  .pf-badge-top {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #ffffff;
+    padding: 10px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .pf-badge-top svg {
+    width: 18px;
+    height: 18px;
+    fill: #5d308c;
+  }
+
+  /* Floating Bottom Info Tags */
+  .pf-tags-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+
+  .pf-tag-item {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* Right Side: Content */
+  .pf-content-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pf-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .pf-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+  }
+
+  .pf-desc {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  /* Feature Cards */
+  .pf-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .pf-feature-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+  }
+
+  .pf-feature-card:hover {
+    border-color: #5d308c;
+    box-shadow: 0 4px 12px rgba(93, 48, 140, 0.08);
+  }
+
+  .pf-feature-icon {
+    background: #f3ebfa;
+    color: #5d308c;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pf-feature-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  .pf-feature-text h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 5px 0;
+  }
+
+  .pf-feature-text p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* CTA Button */
+  .pf-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #5d308c;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 16px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(93, 48, 140, 0.3);
+    transition: background 0.3s ease, transform 0.2s ease;
+    width: fit-content;
+  }
+
+  .pf-cta-button:hover {
+    background: #4a2470;
+    transform: translateY(-2px);
+  }
+
+  .pf-cta-button svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .pf-showcase-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .pf-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<section class="pf-showcase-wrapper">
+  <div class="pf-showcase-container">
+    
+    <!-- Left Column: Image with Overlays -->
+    <div class="pf-image-col">
+      {% if section.settings.main_image != blank %}
+        <img src="{{ section.settings.main_image | img_url: 'master' }}" alt="{{ section.settings.title }}" class="pf-main-image" loading="lazy">
+      {% else %}
+        <div style="background:#ddd; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#777;">Main Product Image</div>
+      {% endif %}
+
+      <!-- Floating Badge -->
+      {% if section.settings.badge_text != blank %}
+        <div class="pf-badge-top">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          {{ section.settings.badge_text }}
+        </div>
+      {% endif %}
+
+      <!-- Bottom Tags -->
+      <div class="pf-tags-bottom">
+        {% if section.settings.tag_1 != blank %}
+          <div class="pf-tag-item">⚡ {{ section.settings.tag_1 }}</div>
+        {% endif %}
+        {% if section.settings.tag_2 != blank %}
+          <div class="pf-tag-item">⏱️ {{ section.settings.tag_2 }}</div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Right Column: Content & Features -->
+    <div class="pf-content-col">
+      <div class="pf-eyebrow">{{ section.settings.eyebrow_text }}</div>
+      <h2 class="pf-title">{{ section.settings.title }}</h2>
+      <p class="pf-desc">{{ section.settings.description }}</p>
+
+      <!-- Feature Cards List -->
+      <div class="pf-features-list">
+        {% for block in section.blocks %}
+          <div class="pf-feature-card">
+            <div class="pf-feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <div class="pf-feature-text">
+              <h4>{{ block.settings.feature_title }}</h4>
+              <p>{{ block.settings.feature_desc }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- CTA Button -->
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="pf-cta-button">
+          {{ section.settings.button_text }}
+          <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.71 12l-7.86-7.86-1.42 1.42L16.86 11H5v2z"/></svg>
+        </a>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Feature Showcase",
+  "enabled_on": {
+    "templates": ["*"],
+    "groups": ["*"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Floating Top Badge Text",
+      "default": "Clinic-Style Facial Sculpting"
+    },
+    {
+      "type": "text",
+      "id": "tag_1",
+      "label": "Bottom Tag 1",
+      "default": "Rechargeable"
+    },
+    {
+      "type": "text",
+      "id": "tag_2",
+      "label": "Bottom Tag 2",
+      "default": "5-10 min"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Subtitle",
+      "default": "ADVANCED ESTHETIC TECHNOLOGY"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "DermaLift™ Facial Rejuvenation"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Professional clinic technology for your vanity. DERMALIFT™ combines gentle EMS microcurrent stimulation with 3D V-shaped sculpting rollers to support firmer-looking skin without needles or downtime."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "START SCULPTING TODAY"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Feature Title",
+          "default": "EMS Microcurrent Toning"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_desc",
+          "label": "Feature Description",
+          "default": "Activates facial muscles to support a lifted, firmer look."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Feature Showcase",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "EMS Microcurrent Toning",
+            "feature_desc": "Activates facial muscles to support a lifted, firmer look."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "3D V-Sculpt Rollers",
+            "feature_desc": "360° rolling pressure helps contour jawline and cheeks."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

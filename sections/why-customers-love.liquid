@@ -1,0 +1,195 @@
+<style>
+  .why-love-wrapper {
+    background-color: #ffffff;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    font-family: 'Inter', sans-serif;
+    padding: 70px 20px;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+  }
+
+  .why-love-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .why-love-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #444;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .why-love-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 10px 0;
+  }
+
+  .why-love-desc {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 50px;
+  }
+
+  .why-love-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    text-align: left;
+  }
+
+  .why-love-card {
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+  }
+
+  .why-love-card:hover {
+    border-color: #5d308c;
+    box-shadow: 0 4px 15px rgba(93, 48, 140, 0.08);
+  }
+
+  .why-love-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+
+  .why-love-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 10px 0;
+  }
+
+  .why-love-card p {
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .why-love-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .why-love-title {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .why-love-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="why-love-wrapper">
+  <div class="why-love-container">
+    
+    <div class="why-love-eyebrow">{{ section.settings.eyebrow_text }}</div>
+    <h2 class="why-love-title">{{ section.settings.title }}</h2>
+    <p class="why-love-desc">{{ section.settings.description }}</p>
+
+    <div class="why-love-grid">
+      <!-- Card 1: EMS Microcurrent Tech -->
+      <div class="why-love-card">
+        <div class="why-love-icon">⚡</div>
+        <h3>EMS Microcurrent Tech</h3>
+        <p>Low-level electrical currents mirror your body's natural impulses to tone and lift facial muscles.</p>
+      </div>
+
+      <!-- Card 2: 3D V-Sculpt Rollers -->
+      <div class="why-love-card">
+        <div class="why-love-icon">🌀</div>
+        <h3>3D V-Sculpt Rollers</h3>
+        <p>Precision-engineered 360° rollers mimic professional kneading to define your jawline and cheekbones.</p>
+      </div>
+
+      <!-- Card 3: Lymphatic Drainage -->
+      <div class="why-love-card">
+        <div class="why-love-icon">💧</div>
+        <h3>Lymphatic Drainage</h3>
+        <p>Reduces morning puffiness and toxins by encouraging fluid movement and improved circulation.</p>
+      </div>
+
+      <!-- Card 4: Lightweight & Ergonomic -->
+      <div class="why-love-card">
+        <div class="why-love-icon">🖐️</div>
+        <h3>Lightweight &amp; Ergonomic</h3>
+        <p>Sleek, cordless design fits perfectly in your hand for a comfortable 8-minute daily routine.</p>
+      </div>
+
+      <!-- Card 5: Spa Results at Home -->
+      <div class="why-love-card">
+        <div class="why-love-icon">🏠</div>
+        <h3>Spa Results at Home</h3>
+        <p>Professional-grade facial sculpting without the $300 clinic price tag or messy appointments.</p>
+      </div>
+
+      <!-- Card 6: Non-Invasive Safety -->
+      <div class="why-love-card">
+        <div class="why-love-icon">🛡️</div>
+        <h3>Non-Invasive Safety</h3>
+        <p>A needle-free, pain-free alternative to fillers that works with your biology, not against it.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Customers Love",
+  "enabled_on": {
+    "templates": ["*"],
+    "groups": ["*"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "ADVANCED ENGINEERING"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Why Customers Love DERMALIFT™"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Section Description",
+      "default": "Designed for precision. Built for clinical-grade daily facial sculpting."
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Why Customers Love",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

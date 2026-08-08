@@ -1,20 +1,22 @@
 .new-video-section {
-  padding: 60px 40px;
+  background: #F5C227 !important;
   font-family: 'Inter', -apple-system, sans-serif;
-  background: #faf6f0;
-  max-width: 1200px;
+  padding: 60px 0 !important;
+  
+  width: 100vw !important;
+  max-width: 100vw !important;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
 }
-
 .new-video-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
-
-.new-video-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
+.new-video-header { text-align: center; margin-bottom: 40px; }
 .new-video-title {
   font-size: 2rem;
   font-weight: 700;
@@ -22,34 +24,26 @@
   margin: 0 0 12px;
   letter-spacing: -0.02em;
 }
-
 .new-video-subtitle {
   font-size: 1.05rem;
-  color: #555;
+  color: #1a1a1a;
   max-width: 600px;
   margin: 0 auto;
 }
-
 .new-video-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
-
-.new-video-card {
-  display: flex;
-  flex-direction: column;
-}
-
+.new-video-card { display: flex; flex-direction: column; }
 .new-video-wrapper {
   position: relative;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   overflow: hidden;
   cursor: pointer;
   background: #000;
   aspect-ratio: 3 / 4;
 }
-
 .new-video-wrapper video,
 .new-video-wrapper .new-video {
   width: 100%;
@@ -57,7 +51,6 @@
   object-fit: cover;
   display: block;
 }
-
 .new-video-placeholder {
   width: 100%;
   height: 100%;
@@ -68,7 +61,6 @@
   font-size: 0.9rem;
   background: #eee;
 }
-
 .new-video-play-icon {
   position: absolute;
   top: 50%;
@@ -77,7 +69,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255,255,255,0.85);
   color: #1a1a1a;
   display: flex;
   align-items: center;
@@ -86,11 +78,11 @@
   pointer-events: none;
   transition: opacity 0.2s;
 }
-
+.new-video-wrapper:hover .new-video-play-icon { opacity: 0.8; }
 .new-video-caption {
   margin: 0;
   padding: 16px 14px;
-  background: #f4f0fb;
+  background: #ffffff;
   border-radius: 0 0 12px 12px;
   font-size: 0.95rem;
   font-style: italic;
@@ -98,19 +90,12 @@
   color: #333;
   line-height: 1.5;
 }
-
 @media (max-width: 900px) {
-  .new-video-grid {
-    grid-template-columns: 1fr;
-  }
+  .new-video-grid { grid-template-columns: 1fr; }
 }
-
 @media (max-width: 768px) {
-  .new-video-section {
-    padding: 32px 20px;
-  }
-
-  .new-video-title {
-    font-size: 1.5rem;
-  }
+  .new-video-section { padding: 40px 0 !important; }
+  .new-video-container { padding: 0 16px; }
+  .new-video-title { font-size: 1.5rem; }
+  .new-video-subtitle { font-size: 0.95rem; }
 }

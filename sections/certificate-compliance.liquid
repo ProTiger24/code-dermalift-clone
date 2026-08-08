@@ -1,0 +1,208 @@
+<style>
+  .cert-section-wrapper {
+    background-color: #ffffff;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    font-family: 'Inter', sans-serif;
+    padding: 70px 20px;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+  }
+
+  .cert-section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+
+  /* Left Side: Certificate Image */
+  .cert-image-col {
+    background-color: #f7f7f7;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cert-image-col img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* Right Side: Content */
+  .cert-content-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cert-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 12px;
+  }
+
+  .cert-title {
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+  }
+
+  .cert-desc {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  .cert-desc strong {
+    color: #111;
+  }
+
+  /* CTA Button */
+  .cert-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #5d308c;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 15px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(93, 48, 140, 0.25);
+    transition: background 0.3s ease, transform 0.2s ease;
+    width: fit-content;
+    margin-top: 10px;
+  }
+
+  .cert-cta-button:hover {
+    background: #4a2470;
+    transform: translateY(-2px);
+  }
+
+  .cert-cta-button svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  @media (max-width: 900px) {
+    .cert-section-container {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .cert-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<section class="cert-section-wrapper">
+  <div class="cert-section-container">
+    
+    <!-- Left Column: Certificate Image -->
+    <div class="cert-image-col">
+      {% if section.settings.cert_image != blank %}
+        <img src="{{ section.settings.cert_image | img_url: 'master' }}" alt="{{ section.settings.title }}" loading="lazy">
+      {% else %}
+        <div style="padding: 100px 20px; text-align: center; color: #777; width: 100%;">Upload Certificate Image</div>
+      {% endif %}
+    </div>
+
+    <!-- Right Column: Content -->
+    <div class="cert-content-col">
+      <div class="cert-eyebrow">{{ section.settings.eyebrow_text }}</div>
+      <h2 class="cert-title">{{ section.settings.title }}</h2>
+      
+      <div class="cert-desc">
+        {{ section.settings.description_1 }}
+      </div>
+      
+      <div class="cert-desc">
+        {{ section.settings.description_2 }}
+      </div>
+
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="cert-cta-button">
+          {{ section.settings.button_text }}
+          <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 1.1.9 2 2 2h2v11h2V11h2c1.1 0 2-.9 2-2V2h-2v7zm3-7v12h2v7h2v-7h2V2h-6z"/></svg>
+        </a>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Certificate & Compliance",
+  "enabled_on": {
+    "templates": ["*"],
+    "groups": ["*"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "cert_image",
+      "label": "Certificate Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "Tested to meet European safety standards"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "CE Certified for Safety & Compliance"
+    },
+    {
+      "type": "textarea",
+      "id": "description_1",
+      "label": "Description Paragraph 1",
+      "default": "This device is <strong>CE certified</strong>, confirming that it complies with applicable European Union safety, health, and environmental protection standards."
+    },
+    {
+      "type": "textarea",
+      "id": "description_2",
+      "label": "Description Paragraph 2",
+      "default": "The certification is issued after independent testing in accordance with <strong>EN 62368-1</strong> standards, ensuring the product meets strict requirements for electrical safety and consumer use."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Get Yours Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Certificate & Compliance",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
