@@ -55,6 +55,7 @@ shopify theme dev
 ├── snippets        # Reusable Liquid code or HTML fragments
 └── templates       # Templates combining sections to define page structures
 ```
+live link:  https://test-ecomfixr.myshopify.com
 
 To learn more, refer to the [theme architecture documentation](https://shopify.dev/docs/storefronts/themes/architecture).
 
